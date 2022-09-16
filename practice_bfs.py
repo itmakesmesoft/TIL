@@ -89,4 +89,115 @@ print(*q)       # 2 3 4 5
 
 
 
-# 예시 3.
+# 예시 3. 
+# < flood fill/Bloom/Virus 유형 >
+# '''
+# 시작점 (1, 1)을 기준으로 상하좌우로 +1씩 더해져 입력
+# [
+#     [3,2,3,4],
+#     [2,1,2,3],
+#     [3,2,3,4],
+#     [4,3,4,5],
+# ]
+# '''
+# from collections import deque
+
+# N = int(input()) # 맵 사이즈
+# y, x = map(int, input().split()) # 꽃이 피기 시작하는 시작점
+# arr = [[0]*N for _ in range(N)]
+# arr[y][x] = 1
+
+# q = deque()
+# q.append([y, x])
+# while q:
+#     now = q.popleft()
+#     y,x = now
+#     dy = [0,1,0,-1]
+#     dx = [1,0,-1,0]
+#     for i in range(4):
+#         ny, nx = y+dy[i], x+dx[i]
+#         if ny > N-1 or nx > N-1 or ny < 0 or nx < 0: continue
+#         if arr[ny][nx]!=0: continue
+#         arr[ny][nx] = arr[y][x] + 1
+#         q.append([ny, nx])
+
+# for i in range(N): # 출력
+#     print(*arr[i])
+# '''
+# test case
+# 3
+# 1 1
+
+# 5
+# 2 1
+# '''
+
+
+
+# 예시 4. 
+# from collections import deque
+
+# def bfs(y, x):
+#     global Map
+#     q = deque()
+#     q.append([y, x])
+#     while q:
+#         now = q.popleft()
+#         y, x = now
+#         dy = [0,1,0,-1]
+#         dx = [1,0,-1,0]
+#         for i in range(4):
+#             ny, nx = y+dy[i], x+dx[i]
+#             if ny>n-1 or nx>n-1 or ny<0 or nx<0: continue
+#             if Map[ny][nx]!=0: continue
+#             if ny == nx and ny == 0:
+#                 return Map[y][x]
+#             Map[ny][nx] = Map[y][x]+1
+#             q.append([ny, nx])
+
+
+        
+# n = int(input())
+# y, x = map(int, input().split())
+# Map = [[0]*n for _ in range(n)]
+# Map[y][x] = 1
+# print(f'{bfs(y, x)}일 후')
+# '''
+# test case
+# 5
+# 3 1
+
+# 8
+# 7 3
+# '''
+
+
+from collections import deque
+def bfs(lst):
+    global arr
+    q = deque()
+    for i in range(len(lst)):
+        q.append(lst[i])
+    while q:
+        now = q.popleft()
+        y, x = now
+        dy = [0,1,0,-1]
+        dx = [1,0,-1,0]
+        for i in range(4):
+            ny, nx = y+dy[i], x+dx[i]
+            if ny>n-1 or nx>n-1 or ny<0 or nx<0: continue
+            if arr[ny][nx] != 0: continue
+            arr[ny][nx] = arr[y][x]+1
+            days=arr[y][x]
+            q.append([ny, nx])
+    return days
+
+n = int(input())
+lst = [[1,3],[5,6]]
+arr = [[0]*n for _ in range(n)]
+for y, x in lst:
+    arr[y][x]=1
+
+print(f'{bfs(lst)}일 후')
+# for i in range(n): # 그래프 출력
+#     print(*arr[i])
