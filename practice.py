@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # def function(param):
 #     res=""
 #     cnt=0 # 가장 첫번째 대문자는 바꾸지 않기 위해 카운트 변수 설정
