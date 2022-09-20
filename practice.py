@@ -61,24 +61,53 @@
 # print(function(words_dict))
 
 # 1.
-def count_vowels(param):
-    count=0
-    for vowel in ['a','e','i','o','u']:
-        count+=param.count(vowel)
-    return count
-word=input()
-print(count_vowels(word))
+# def count_vowels(param):
+#     count=0
+#     for vowel in ['a','e','i','o','u']:
+#         count+=param.count(vowel)
+#     return count
+# word=input()
+# print(count_vowels(word))
 
-# 2.
-answer : (4)
+# # 2.
+# answer : (4)
 
-# 3. 
-def only_square_area(widths, heights):
-    res=[]
-    for i in widths:
-        if i in heights:
-            res.append(i**2)
-    return res
-widths=[32,55,63]
-heights=[13,32,40,55]
-print(only_square_area(widths, heights))
+# # 3. 
+# def only_square_area(widths, heights):
+#     res=[]
+#     for i in widths:
+#         if i in heights:
+#             res.append(i**2)
+#     return res
+# widths=[32,55,63]
+# heights=[13,32,40,55]
+# print(only_square_area(widths, heights))
+
+
+
+T  = int(input())
+for testcase in range(1,T+1):
+    N = int(input())
+    snail = [[0] * N for _ in range(N)]
+    dy = [0, 1, 0, -1]
+    dx = [1, 0, -1, 0]
+    Y,X = 0,0
+    INDEX,num =0,1
+
+    while num <= N*N:
+        snail[Y][X] = num
+        num += 1
+        Y += dy[INDEX]
+        X += dx[INDEX]
+        if snail[Y][X] !=0 or Y < 0 or X < 0 or Y > N-1 or X > N-1:
+            Y -= dy[INDEX]
+            X -= dx[INDEX]
+            INDEX = (INDEX + 1) % 4
+            Y += dy[INDEX]
+            X += dx[INDEX]
+
+    print(f'{testcase}')
+    for i in range(N):
+        for j in range(N):
+            print(snail[i][j],end = '')
+        print()
