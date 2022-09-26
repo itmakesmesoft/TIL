@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # def function(param):
 #     res=""
 #     cnt=0 # 가장 첫번째 대문자는 바꾸지 않기 위해 카운트 변수 설정
@@ -86,29 +85,48 @@
 
 
 
-T  = int(input())
-for testcase in range(1,T+1):
-    N = int(input())
-    snail = [[0] * N for _ in range(N)]
-    dy = [0, 1, 0, -1]
-    dx = [1, 0, -1, 0]
-    Y,X = 0,0
-    INDEX,num =0,1
+# T  = int(input())
+# for testcase in range(1,T+1):
+#     N = int(input())
+#     snail = [[0] * N for _ in range(N)]
+#     dy = [0, 1, 0, -1]
+#     dx = [1, 0, -1, 0]
+#     Y,X = 0,0
+#     INDEX,num =0,1
 
-    while num <= N*N:
-        snail[Y][X] = num
-        num += 1
-        Y += dy[INDEX]
-        X += dx[INDEX]
-        if snail[Y][X] !=0 or Y < 0 or X < 0 or Y > N-1 or X > N-1:
-            Y -= dy[INDEX]
-            X -= dx[INDEX]
-            INDEX = (INDEX + 1) % 4
-            Y += dy[INDEX]
-            X += dx[INDEX]
+#     while num <= N*N:
+#         snail[Y][X] = num
+#         num += 1
+#         Y += dy[INDEX]
+#         X += dx[INDEX]
+#         if snail[Y][X] !=0 or Y < 0 or X < 0 or Y > N-1 or X > N-1:
+#             Y -= dy[INDEX]
+#             X -= dx[INDEX]
+#             INDEX = (INDEX + 1) % 4
+#             Y += dy[INDEX]
+#             X += dx[INDEX]
 
-    print(f'{testcase}')
-    for i in range(N):
-        for j in range(N):
-            print(snail[i][j],end = '')
-        print()
+#     print(f'{testcase}')
+#     for i in range(N):
+#         for j in range(N):
+#             print(snail[i][j],end = '')
+#         print()
+
+
+def rotate():
+    rotated_arr = [[0]*n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            rotated_arr[i][j] = arr[n-1-j][n-1-i]
+    return rotated_arr
+
+arr = [
+        ["A", "C", "G", "K"],
+        ["T", "T", "B", "E"],
+        ["A", "C", "D", "A"],
+        ["B", "C", "A", "F"]
+    ]
+n = len(arr)
+rotated = rotate()
+for i in range(n):
+    print(*rotated[i])

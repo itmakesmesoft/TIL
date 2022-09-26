@@ -145,6 +145,11 @@
 # print(Max)
 
 
+
+
+
+
+
 # 6. 땅파기 문제
 # from copy import deepcopy
 # arr = [
