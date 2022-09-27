@@ -190,3 +190,24 @@
 
 
 
+
+
+
+
+
+
+
+# def dfs(level, start):
+#     global path
+#     if level == 3:
+#         print(*path)
+#         return
+
+#     for i in range(start, len(arr)):
+#         path[level] = arr[i]
+#         dfs(level+1, i)
+#         path[level] = 0
+
+# arr = list(input())
+# path = [0]*3 # [0, 0, 0]
+# dfs(0, 0)

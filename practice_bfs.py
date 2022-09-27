@@ -60,6 +60,10 @@ print(*q)       # 2 3 4 5
 # print(answer)
 
 
+
+
+
+
 # 예시 2.
 # from collections import deque
 # def bfs(start):
@@ -86,6 +90,9 @@ print(*q)       # 2 3 4 5
 # path = []
 # bfs(start)
 # print(*path)
+
+
+
 
 
 
@@ -134,6 +141,9 @@ print(*q)       # 2 3 4 5
 
 
 
+
+
+
 # 예시 4. 
 # from collections import deque
 
@@ -172,32 +182,76 @@ print(*q)       # 2 3 4 5
 # '''
 
 
-from collections import deque
-def bfs(lst):
-    global arr
-    q = deque()
-    for i in range(len(lst)):
-        q.append(lst[i])
-    while q:
-        now = q.popleft()
-        y, x = now
-        dy = [0,1,0,-1]
-        dx = [1,0,-1,0]
-        for i in range(4):
-            ny, nx = y+dy[i], x+dx[i]
-            if ny>n-1 or nx>n-1 or ny<0 or nx<0: continue
-            if arr[ny][nx] != 0: continue
-            arr[ny][nx] = arr[y][x]+1
-            days=arr[y][x]
-            q.append([ny, nx])
-    return days
 
-n = int(input())
-lst = [[1,3],[5,6]]
-arr = [[0]*n for _ in range(n)]
-for y, x in lst:
-    arr[y][x]=1
 
-print(f'{bfs(lst)}일 후')
-# for i in range(n): # 그래프 출력
-#     print(*arr[i])
+
+# # 예시 5. 화단에 씨앗이 심길 위치 2곳을 입력받고 
+# # 화단에 꽃이 모두 개화하는데 몇 일이 걸릴지 출력하라
+# from collections import deque
+# def bfs(lst):
+#     global arr
+#     q = deque()
+#     for i in range(len(lst)):
+#         q.append(lst[i])
+#     while q:
+#         now = q.popleft()
+#         y, x = now
+#         dy = [0,1,0,-1]
+#         dx = [1,0,-1,0]
+#         for i in range(4):
+#             ny, nx = y+dy[i], x+dx[i]
+#             if ny>n-1 or nx>n-1 or ny<0 or nx<0: continue
+#             if arr[ny][nx] != 0: continue
+#             arr[ny][nx] = arr[y][x]+1
+#             days=arr[y][x]
+#             q.append([ny, nx])
+#     return days
+
+# n = int(input())
+# lst = [[1,3],[5,6]]
+# arr = [[0]*n for _ in range(n)]
+# for y, x in lst:
+#     arr[y][x]=1
+
+# print(f'{bfs(lst)}일 후')
+# # for i in range(n): # 그래프 출력
+# #     print(*arr[i])
+
+
+
+
+
+
+# 예시 6. 미로찾기
+# bfs 2번사용
+# from collections import deque
+
+# arr = [ # 0: 가능(도로) | 1: 불가능(벽)
+#     [0,0,0,1,1],
+#     [0,0,0,1,0],
+#     [1,0,0,0,0],
+#     [0,0,0,0,0],
+# ]
+
+# def bfs(sty, stx, eny, enx):
+#     visited = [[0]*5 for _ in range(4)]
+#     visited[sty][stx] = 1
+#     q = deque()
+#     q.append((sty, stx, 0)) # start_y, start_x, level
+#     while q:
+#         now = q.popleft()
+#         y, x, level = now
+#         if y==eny and x == enx: break # 목적지 도착 시 break
+#         dy= [-1,0,1,0]
+#         dx= [0,-1,0,1]
+#         for i in range(4):
+#             ny, nx = y+dy[i], x+dx[i]
+#             if ny > 3 or nx > 4 or ny < 0 or nx < 0: continue
+#             if arr[ny][nx]==1: continue # 벽인 경우 continue
+#             if visited[ny][nx]==1: continue # 방문한 경우 continue
+#             visited[ny][nx]=1
+#             q.append((ny, nx, level+1))
+#     return level
+
+# ret = bfs(0, 0, 3, 0) + bfs(3, 0, 3, 4) # bfs(start_y, start_x, end_y, end_x)
+# print(ret)
