@@ -1,198 +1,116 @@
+# def function(param):
+#     res=""
+#     cnt=0 # 가장 첫번째 대문자는 바꾸지 않기 위해 카운트 변수 설정
+#     for p in param:
+#         if p.isalpha():
+#             if p.isupper() and cnt==0: # 문자가 대문자이고, cnt가 0인 경우
+#                 res+=p #그대로 대문자를 출력하고
+#                 cnt=1  #cnt=1로 대입
+#             else:
+#                 res+=p.lower()
+#         else:
+#             if p in [',','.','\'']:
+#                 res+=p
+#     return res
 
-# 1. 중복조합
-# 각 항에서 1~4 사이의 숫자를 1개씩 택해서 다 더했을때 
-# 10이 나오는 경우는 몇가지인지 출력
-# (n개의 항에서 1~4 사이의 숫자 택)
-
-# def dfs(num, total):
-#     global cnt
-#     if num == n:
-#         if total == 10:
-#             cnt += 1
-#         return
-#     for i in range(4):
-#         dfs(num + 1, total + arr[i])
-
-# arr = [1,2,3,4]
-# n= int(input())
-# cnt = 0
-# dfs(0, 0)
-# print(cnt)
+# print(function(input()))
 
 
 
+# def sum_of_repeat_number(param):
+#     res=[]
+#     for p in param:
+#         if param.count(p)==1:
+#             res.append(p)
+#     return sum(res)
+
+
+# arr=list(map(int, input().split())) #입력 예시 3 4 5 23 3 4
+# print(sum_of_repeat_number(arr))
 
 
 
-# 2. 조합
-# M, B, T, I 4명이 놀이동산에 갔다. 
-# 놀이기구는 한 유닛에 3명이 앉을 수 있다
-# 4명 중 1명이 고소공포증이 있어 놀이기구를 탑승하지 않는다고 한다.
-# 놀이기구를 타는 모든 조합을 출력하라.
 
-# def dfs(level, start):
-#     global boarding
-#     if level==3:
-#         for i in range(4):
-#             if boarding[i]==1:
-#                 print(member[i], end=' ')
+# words_dict = {'proper' : '적절한',
+# 'possible' : '가능한',
+# 'moral' : '도덕적인',
+# 'patient' : '참을성 있는',
+# 'balance' : '균형',
+# 'perfect' : '완벽한',
+# 'logical' : '논리적인',
+# 'legal' : '합법적인',
+# 'relevant' : '관련 있는',
+# 'responsible' : '책임감 있는',
+# 'regular' : '규칙적인'}
+
+
+# def function(param):
+#     res=[]
+#     for word in param:
+#         if word[0] in ['b','m','p']:
+#             res.append('im'+word)
+#         elif word[0] == 'l':
+#             res.append('il'+word)
+#         elif word[0] == 'r':
+#             res.append('ir'+word)
+#         else:
+#             res.append('in'+word)
+#     res.sort()
+#     return res
+
+# print(function(words_dict))
+
+# 1.
+# def count_vowels(param):
+#     count=0
+#     for vowel in ['a','e','i','o','u']:
+#         count+=param.count(vowel)
+#     return count
+# word=input()
+# print(count_vowels(word))
+
+# # 2.
+# answer : (4)
+
+# # 3. 
+# def only_square_area(widths, heights):
+#     res=[]
+#     for i in widths:
+#         if i in heights:
+#             res.append(i**2)
+#     return res
+# widths=[32,55,63]
+# heights=[13,32,40,55]
+# print(only_square_area(widths, heights))
+
+
+
+# T  = int(input())
+# for testcase in range(1,T+1):
+#     N = int(input())
+#     snail = [[0] * N for _ in range(N)]
+#     dy = [0, 1, 0, -1]
+#     dx = [1, 0, -1, 0]
+#     Y,X = 0,0
+#     INDEX,num =0,1
+
+#     while num <= N*N:
+#         snail[Y][X] = num
+#         num += 1
+#         Y += dy[INDEX]
+#         X += dx[INDEX]
+#         if snail[Y][X] !=0 or Y < 0 or X < 0 or Y > N-1 or X > N-1:
+#             Y -= dy[INDEX]
+#             X -= dx[INDEX]
+#             INDEX = (INDEX + 1) % 4
+#             Y += dy[INDEX]
+#             X += dx[INDEX]
+
+#     print(f'{testcase}')
+#     for i in range(N):
+#         for j in range(N):
+#             print(snail[i][j],end = '')
 #         print()
-#         return
-
-#     for i in range(start, 4):
-#         if boarding[i]==1: continue
-#         boarding[i]=1
-#         dfs(level+1, i+1)
-#         boarding[i]=0
-
-# member = ['M', 'B', 'T', 'I']
-# boarding = [0]*4
-# dfs(0, 0)
-
-
-
-
-
-
-# 3. 순열
-# line1=[3,7,1,-3,-6,1]
-# line2=[7,-4,1,-5,3,2]
-# 두 라인에서 숫자를 1개씩 번갈아 가며 선택을 하고자 한다. 
-# 첫 번째 라인에서 숫자를 1개 택한 후 x1을 하고
-# 두 번째 라인에서 숫자를 1개 택한 후 x2를 하고
-# 첫 번째 라인에서 숫자를 1개 택한 후 x3을 하고..
-# 두 번째 라인에서 숫자를 1개 택한 수 x4를 곱한다.
-# 위와 같이 가중치가 1씩 증가되는 값으로 뽑은 숫자에 곱해 모두 더했을때 
-# 0에 가장 가까운 총 합은 몇인가?
-# (각 라인의 숫자는 1번 씩만 사용하여 모든 숫자를 한번씩 뽑는다.)
-
-# def dfs(level, total):
-#     global min_total
-#     if level == 12:
-#         if abs(total) < abs(min_total):
-#             min_total = total
-#         return
-#     for i in range(6):
-#         if level%2==0 and used[0][i]==0:
-#             used[0][i]=1
-#             dfs(level+1, total + line1[i]*(level+1))
-#             used[0][i]=0
-#         elif level%2==1 and used[1][i]==0:
-#             used[1][i]=1
-#             dfs(level+1, total + line2[i]*(level+1))
-#             used[1][i]=0
-
-# line1 = [3,7,1,-3,-6,1]
-# line2 = [7,-4,1,-5,3,2]
-# used = [[0]*6 for _ in range(2)]
-# min_total = float('inf')
-# dfs(0, 0)
-# print(min_total)
-
-
-
-
-
-# 4. 서바이벌 게임
-# A ~ G 를 두팀으로 나누어서 게임을 하고자 한다.
-# 두 팀으로 나누었을 경우, 두 팀의 전투력 차이의 최소값은 몇인가?
-# (모든 선수는 경기에 참가를 하며 1인팀도 가능)
-#           A   B   C   D   E   F   G
-# power = [50, 40, 99,  5, 25,  6, 37]
-
-# def dfs(level, tot):
-#     global min_tot
-#     if level == len(power)-1 : return
-#     if abs(total - 2*tot) < abs(total - 2*min_tot):
-#         min_tot = tot
-#     for i in range(len(power)):
-#         if used[i]==1: continue
-#         used[i]=1
-#         dfs(level+1, tot+power[i])
-#         used[i]=0
-
-# power = [50, 40, 99, 5, 25, 6, 37]
-# total = sum(power)
-# min_tot = float('inf')
-# used = [0]*len(power)
-# dfs(0, 0)
-# print(abs(total-2*min_tot))
-
-
-
-
-
-# 5. 
-# '''
-# test case
-# 4
-# 7 3 5 4
-# '''
-
-# def dfs(level, total):
-#     global Max
-#     if level == n:
-#         if Max < total:
-#             Max = total
-#         return
-#     dfs(level+1, total * (arr[level]*2))
-#     dfs(level+1, total * (arr[level]//3))
-#     dfs(level+1, total * (arr[level]+5))
-
-# n = int(input())
-# arr = list(map(int, input().split()))
-# Max = float('-inf')
-# dfs(0, 1)
-# print(Max)
-
-
-# 6. 땅파기 문제
-# from copy import deepcopy
-# arr = [
-#     [4, 2, 1],
-#     [5, 3, 9],
-#     [7, 8, 1]
-# ]
-
-# def change(i, j):
-#     global arr
-#     dy = [0,0,1,0,-1]
-#     dx = [0,1,0,-1,0]
-#     for k in range(5):
-#         ny, nx = i+dy[k], j+dx[k]
-#         if ny > 2 or nx > 2 or ny < 0 or nx < 0: continue
-#         arr[ny][nx] = (arr[ny][nx]*7)%10
-
-# def getsum(array):
-#     total = 0
-#     for i in range(3):
-#         for j in range(3):
-#             total += array[i][j]
-#     return total
-
-# def dfs(level):
-#     global Max, arr
-#     backup = deepcopy(arr)
-#     if level == 3:
-#         total = getsum(arr)
-#         if Max < total:
-#             Max = total
-#         return
-#     for i in range(3):
-#         for j in range(3):
-#             change(i, j)
-#             dfs(level+1)
-#             arr = deepcopy(backup)
-    
-# Max = float('-inf')
-# dfs(0)
-# print(Max)
-
-
-
-
-
-
 
 
 
