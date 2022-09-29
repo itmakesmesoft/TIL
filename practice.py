@@ -129,3 +129,56 @@
 # arr = list(input())
 # path = [0]*3 # [0, 0, 0]
 # dfs(0, 0)
+
+
+
+
+def bomb(y, x):
+    dy = [0,1,0,-1]
+    dx = [1,0,-1,0]
+    for i in range(4):
+        k = 1
+        while True:
+            ny, nx = y+dy[i]*k, x+dx[i]*k
+            if ny>n-1 or nx>n-1 or ny<0 or nx<0: break
+            if arr[ny][nx]==3: break
+            arr[ny][nx]=2
+            k+=1
+
+# arr = [
+#     [0,0,3,0,0],
+#     [0,3,1,0,3],
+#     [0,3,1,0,3],
+#     [3,0,0,1,0],
+#     [0,3,1,0,3]
+# ]
+arr = [
+    [0,0,0,0,0],
+    [0,1,3,1,0],
+    [0,3,0,3,0],
+    [0,1,3,1,0],
+    [0,0,0,0,0]
+]
+
+n = len(arr)
+for i in range(n):
+    for j in range(n):
+        if arr[i][j]==1:
+            bomb(i, j)
+cnt =0
+for i in range(n):
+    for j in range(n):
+        if arr[i][j]==0:
+            cnt+=1
+print(cnt)
+
+'''
+test case
+arr = [
+    [0,0,0,0,0],
+    [0,1,1,1,0],
+    [0,3,0,3,0],
+    [0,1,3,1,0],
+    [0,0,0,0,0]
+]
+'''

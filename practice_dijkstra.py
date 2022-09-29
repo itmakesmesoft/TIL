@@ -10,23 +10,6 @@
 # 1. 경유지 선택
 # 2. used==0인지 체크
 '''
-inf = int(21e8)
-arr = [
-    [0, 3, inf, 9, 5],
-    [inf, 0, 7, inf, 1],
-    [inf, inf, 0, 1, inf],
-    [inf, inf, inf, 0, inf],
-    [inf, inf, 1, inf, 0],
-]
-n = len(arr)
-used = [0]*n
-result = [0]*n
-start, end = map(int, input().split())
-for i in range(n):
-    result[i] = arr[start][i]
-used[start]=1
-
-
 def select_via(): # 사용되지 않은 원소 중 가장 작은 원소를 via로 선택
     Min = int(21e8)
     for i in range(n):
@@ -46,8 +29,24 @@ def dijkstra():
                 result[j]=via
         print(*result)
 
+inf = int(21e8)
+arr = [
+    [0, 3, inf, 9, 5],
+    [inf, 0, 7, inf, 1],
+    [inf, inf, 0, 1, inf],
+    [inf, inf, inf, 0, inf],
+    [inf, inf, 1, inf, 0],
+]
+n = len(arr)
+used = [0]*n
+result = [0]*n
+start, end = map(int, input().split())
+for i in range(n):
+    result[i] = arr[start][i]
+used[start]=1
+
 dijkstra()
-# print(*result)
+print(*result)
 '''
 
 
@@ -88,10 +87,10 @@ def dijkstra(start):
                 heapq.heappush(heap, (cost, next[0]))
 
 name = 'ABCDE'
-n = int(input())
-m = int(input())
-arr = [[] for _ in range(n)]
-for _ in range(m): # 인접 리스트 만들기
+n = int(input()) # 정점의 개수
+m = int(input()) # 간선의 개수
+arr = [[] for _ in range(n)] # 인접 리스트 만들기
+for _ in range(m): 
     a,b,c = map(int, input().split()) # 시작, 도착, 비용
     arr[a].append((b, c))
 start, end = map(int, input().split())
