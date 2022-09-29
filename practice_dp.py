@@ -200,7 +200,7 @@ for i in range(1, n+1):
         if j < weight:  # 가방에 넣을 수 없으면
             dp[i][j] = dp[i - 1][j]  # 위에 값 그대로 가져오기
         else: # 가방에 넣을 수 있으면
-            dp[i][j] = max(dp[i - 1][j],value + dp[i][j - weight])
+            dp[i][j] = max(dp[i - 1][j], dp[i][j - weight] + value)
 print(dp[n][k])
 
 
